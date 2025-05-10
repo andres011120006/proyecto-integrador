@@ -5,17 +5,18 @@
 package com.mycompany.proy_integ_4la;
 
 import ORCLCONEXION.ConectarAOracle;
+import Utiles.AplicarPhoto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-public class CrearSalas extends javax.swing.JFrame {
+public class ActualizarSalas extends javax.swing.JFrame {
    private final ConectarAOracle gestor = new ConectarAOracle();
     private final Connection conexion = gestor.abrir();
     /**
-     * Creates new form CrearSalas
+     * Creates new form ActualizarSalas
      */
-    public CrearSalas() {
+    public ActualizarSalas() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -32,37 +33,42 @@ public class CrearSalas extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        Cnombre = new javax.swing.JTextField();
+        ACid = new javax.swing.JTextField();
+        ACnombre = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        Cestado = new javax.swing.JTextField();
+        ACestado = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(0, 255, 204));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 51));
 
-        jLabel1.setText("CREAR SALAS");
+        jLabel1.setText("ACTUALIZAR SALAS");
 
-        jLabel2.setText("nombre");
+        jLabel2.setText("id");
 
-        Cnombre.addActionListener(new java.awt.event.ActionListener() {
+        ACid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CnombreActionPerformed(evt);
+                ACidActionPerformed(evt);
             }
         });
+
+        ACnombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ACnombreActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("nombre ");
 
         jLabel3.setText("estado");
 
-        jButton1.setText("crear");
+        jButton1.setText("actualizar");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
-            }
-        });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
             }
         });
 
@@ -85,40 +91,47 @@ public class CrearSalas extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(284, 284, 284)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(85, 85, 85)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(150, 150, 150)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(Cnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Cestado, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(ACid, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(ACnombre, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE))
+                        .addComponent(ACestado, javax.swing.GroupLayout.Alignment.LEADING))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
+                        .addGap(24, 24, 24)
                         .addComponent(jButton1)
-                        .addGap(168, 168, 168)
+                        .addGap(53, 53, 53)
                         .addComponent(jButton2)))
-                .addContainerGap(209, Short.MAX_VALUE))
+                .addContainerGap(472, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jLabel2)
+                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(Cnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ACid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(ACnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
                 .addComponent(jLabel3)
-                .addGap(27, 27, 27)
-                .addComponent(Cestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86)
+                .addGap(29, 29, 29)
+                .addComponent(ACestado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(162, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -132,63 +145,60 @@ public class CrearSalas extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CnombreActionPerformed
+    private void ACidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACidActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_CnombreActionPerformed
+    }//GEN-LAST:event_ACidActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void ACnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACnombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-                     String nombre = Cnombre.getText();
-                     String estado = Cestado.getText();
-             
-        
-
-        if (nombre.isEmpty() || estado.isEmpty()  ) {
-            JOptionPane.showMessageDialog(null, "Todos los campos deben ser llenados.");
-        } else {
-            try {
-               
-                String sqlCode = "INSERT INTO salas (id_sala, nombre,estado) VALUES (seq_salas.NEXTVAL, ?, ?)";
-
-
-                PreparedStatement ps = conexion.prepareStatement(sqlCode);
-
-            
-                ps.setString(1, nombre);
-                ps.setString(2, estado);
-
-                int filasAfectadas = ps. executeUpdate();
-
-                if (filasAfectadas > 0) {
-                    JOptionPane.showMessageDialog(null, "La sala ha sido registrada correctamente.");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Hubo un error al guardar los datos.");
-                }
-            } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error al guardar los datos: " + e.getMessage());
-            }
-        }
-    
-    }//GEN-LAST:event_jButton1MouseClicked
+    }//GEN-LAST:event_ACnombreActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-             AdministrarSalas cr=new AdministrarSalas();
+    AdministrarSalas cr=new AdministrarSalas();
              cr.setVisible(true);
              dispose(); 
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+       String nombre = ACnombre.getText();
+        String estado = ACestado.getText();
+        String id = ACid.getText();
+
+        if (nombre.isEmpty() || estado.isEmpty() || id.isEmpty() ) {
+            JOptionPane.showMessageDialog(null, "Todos los campos deben ser llenados.");
+        } else {
+            try {
+
+                String sqlCode = "UPDATE salas SET nombre = ?, estado = ? WHERE id_sala = ?";
+
+                PreparedStatement ps = conexion.prepareStatement(sqlCode);
+
+                ps.setString(1, nombre);
+                ps.setString(2, estado);
+                ps.setString(3, id);
+
+                int filasAfectadas = ps. executeUpdate();
+
+                if (filasAfectadas > 0) {
+                    JOptionPane.showMessageDialog(null, "La sala ha sido actualizada correctamente.");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Hubo un error al actualizar los datos.");
+                }
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error al actualizar los datos: " + e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -207,32 +217,34 @@ public class CrearSalas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CrearSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ActualizarSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CrearSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ActualizarSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CrearSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ActualizarSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CrearSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ActualizarSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CrearSalas().setVisible(true);
+                new ActualizarSalas().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField Cestado;
-    private javax.swing.JTextField Cnombre;
+    private javax.swing.JTextField ACestado;
+    private javax.swing.JTextField ACid;
+    private javax.swing.JTextField ACnombre;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -17,6 +17,7 @@ private final ConectarAOracle gestor = new ConectarAOracle();
      */
     public ElimiarUsuarios() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

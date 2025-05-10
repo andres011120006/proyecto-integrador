@@ -15,6 +15,7 @@ public class PanelUsuario extends javax.swing.JFrame {
      */
     public PanelUsuario() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
