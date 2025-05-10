@@ -5,10 +5,12 @@
 package com.mycompany.proy_integ_4la;
 
 import ORCLCONEXION.ConectarAOracle;
+import Utiles.AplicarPhoto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+
 public class CrearUsuarios extends javax.swing.JFrame {
    private final ConectarAOracle gestor = new ConectarAOracle();
     private final Connection conexion = gestor.abrir();
@@ -17,6 +19,7 @@ public class CrearUsuarios extends javax.swing.JFrame {
      */
     public CrearUsuarios() {
         initComponents();
+        AplicarPhoto.pintar(this.imagen, "/images/fondocrearusuario.png");
     }
 
     /**
@@ -38,6 +41,7 @@ public class CrearUsuarios extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        imagen = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,6 +75,8 @@ public class CrearUsuarios extends javax.swing.JFrame {
             }
         });
 
+        imagen.setText("jLabel5");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -98,7 +104,10 @@ public class CrearUsuarios extends javax.swing.JFrame {
                                     .addComponent(jButton1)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(106, 106, 106)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(139, 139, 139)
+                        .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(150, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -125,7 +134,9 @@ public class CrearUsuarios extends javax.swing.JFrame {
                 .addComponent(CrearContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addGap(102, 102, 102))
+                .addGap(14, 14, 14)
+                .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -148,27 +159,26 @@ public class CrearUsuarios extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CrearContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearContraseñaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CrearContraseñaActionPerformed
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        PanelAdministrador cr=new PanelAdministrador();
+        cr.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-              String nombre = CrearNombre.getText();
-             String correo = CrearCorreo.getText();
-             String contraseña = CrearContraseña.getText();
-        
+        String nombre = CrearNombre.getText();
+        String correo = CrearCorreo.getText();
+        String contraseña = CrearContraseña.getText();
 
         if (nombre.isEmpty() || correo.isEmpty() || contraseña.isEmpty() ) {
             JOptionPane.showMessageDialog(null, "Todos los campos deben ser llenados.");
         } else {
             try {
-               
-                String sqlCode = "INSERT INTO usuarios (id_usuario, nombre, correo, contraseña) VALUES (seq_usuarios.NEXTVAL, ?, ?, ?)";
 
+                String sqlCode = "INSERT INTO usuarios (id_usuario, nombre, correo, contraseña) VALUES (seq_usuarios.NEXTVAL, ?, ?, ?)";
 
                 PreparedStatement ps = conexion.prepareStatement(sqlCode);
 
-            
                 ps.setString(1, nombre);
                 ps.setString(2, correo);
                 ps.setString(3, contraseña);
@@ -186,11 +196,9 @@ public class CrearUsuarios extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-               PanelAdministrador cr=new PanelAdministrador();
-             cr.setVisible(true);
-             dispose();  
-    }//GEN-LAST:event_jButton2MouseClicked
+    private void CrearContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearContraseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CrearContraseñaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -231,6 +239,7 @@ public class CrearUsuarios extends javax.swing.JFrame {
     private javax.swing.JPasswordField CrearContraseña;
     private javax.swing.JTextField CrearCorreo;
     private javax.swing.JTextField CrearNombre;
+    private javax.swing.JLabel imagen;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;

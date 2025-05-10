@@ -83,6 +83,10 @@
                           <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
                           <Component id="jLabel4" min="-2" pref="109" max="-2" attributes="0"/>
                       </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="139" max="-2" attributes="0"/>
+                          <Component id="imagen" min="-2" pref="92" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace pref="150" max="32767" attributes="0"/>
               </Group>
@@ -115,7 +119,9 @@
                   <Component id="CrearContraseña" min="-2" pref="33" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="102" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                  <Component id="imagen" min="-2" pref="32" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -165,6 +171,11 @@
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton2MouseClicked"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="imagen">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="jLabel5"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
