@@ -9,7 +9,6 @@ public class ConectarAOracle {
     private static final String URL = "jdbc:oracle:thin:@192.168.254.215:1521:orcl";
     private static final String USUARIO = "proy_int_am";
     private static final String CLAVE = "proy_int_am";
-
     private static Connection instancia;
 
     public Connection abrir() {
