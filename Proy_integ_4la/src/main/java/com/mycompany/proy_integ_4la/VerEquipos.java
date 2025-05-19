@@ -10,16 +10,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
-public class VerSalas extends javax.swing.JFrame {
+public class VerEquipos extends javax.swing.JFrame {
    private final ConectarAOracle gestor = new ConectarAOracle();
     private final Connection conexion = gestor.abrir();
     /**
-     * Creates new form VerSalas
+     * Creates new form VerEquipos
      */
-    public VerSalas() {
+    public VerEquipos() {
         initComponents();
-        setLocationRelativeTo(null);
+         setLocationRelativeTo(null);
     }
 public void cargarTabla() {
     try {
@@ -28,24 +27,23 @@ public void cargarTabla() {
         modelo.addColumn("Nombre");
         modelo.addColumn("Estado");
 
-        String sql = "SELECT * FROM salas";
+        String sql = "SELECT * FROM equipo";
         PreparedStatement ps = conexion.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
             Object[] fila = new Object[3];
-            fila[0] = rs.getInt("id_sala");
+            fila[0] = rs.getInt("id_equipo");
             fila[1] = rs.getString("nombre");
             fila[2] = rs.getString("Estado");
             modelo.addRow(fila);
         }
 
-        tablasala.setModel(modelo);
+        tablaequipo.setModel(modelo);
     } catch (Exception e) {
         e.printStackTrace();
     }
 }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,11 +54,11 @@ public void cargarTabla() {
     private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablasala = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaequipo = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -71,10 +69,18 @@ public void cargarTabla() {
 
         jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText("VER SALAS ");
-        jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, -1, -1));
+        jLabel2.setText(" VER EQUIPOS");
+        jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 6, 100, 30));
 
-        tablasala.setModel(new javax.swing.table.DefaultTableModel(
+        jButton1.setText("volver");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jLayeredPane1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, -1, -1));
+
+        tablaequipo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -85,25 +91,12 @@ public void cargarTabla() {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tablasala);
+        jScrollPane1.setViewportView(tablaequipo);
 
-        jLayeredPane1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 510, 340));
+        jLayeredPane1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 510, 360));
 
-        jButton2.setText("volver");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
-            }
-        });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jLayeredPane1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, -1, -1));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/FondoEstandar.png"))); // NOI18N
-        jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, 710, 420));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/FondoEstandar.png"))); // NOI18N
+        jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -4, 710, 410));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,19 +112,15 @@ public void cargarTabla() {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-              AdministrarSalas cr=new AdministrarSalas();
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        cargarTabla();        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowOpened
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+              AdministrarEquipos cr=new AdministrarEquipos();
              cr.setVisible(true);
              dispose(); 
-    }//GEN-LAST:event_jButton2MouseClicked
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-      cargarTabla();
-    }//GEN-LAST:event_formWindowOpened
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -150,31 +139,30 @@ public void cargarTabla() {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VerSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VerEquipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VerSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VerEquipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VerSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VerEquipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VerSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VerEquipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VerSalas().setVisible(true);
+                new VerEquipos().setVisible(true);
             }
         });
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablasala;
+    private javax.swing.JTable tablaequipo;
     // End of variables declaration//GEN-END:variables
 }

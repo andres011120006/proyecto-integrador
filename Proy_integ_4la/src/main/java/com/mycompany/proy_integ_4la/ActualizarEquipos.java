@@ -10,13 +10,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-public class ActualizarSalas extends javax.swing.JFrame {
+public class ActualizarEquipos extends javax.swing.JFrame {
    private final ConectarAOracle gestor = new ConectarAOracle();
     private final Connection conexion = gestor.abrir();
     /**
-     * Creates new form ActualizarSalas
+     * Creates new form ActualizarEquipos
      */
-    public ActualizarSalas() {
+    public ActualizarEquipos() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -30,85 +30,74 @@ public class ActualizarSalas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel6 = new javax.swing.JLabel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         ACid = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        ACnombre = new javax.swing.JTextField();
+        ACestado = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        ACestado = new javax.swing.JTextField();
-        ACnombre = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+
+        jLabel6.setText("jLabel6");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLayeredPane1.setPreferredSize(new java.awt.Dimension(704, 409));
         jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setText("ACTUALIZAR EQUIPOS");
+        jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 140, 20));
+
+        jLabel3.setText("ID");
+        jLayeredPane1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 50, -1));
 
         ACid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ACidActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(ACid, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 200, 30));
+        jLayeredPane1.add(ACid, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 90, -1));
+        jLayeredPane1.add(ACnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, 90, -1));
+        jLayeredPane1.add(ACestado, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 100, -1));
 
-        jLabel1.setText("ACTUALIZAR SALAS");
-        jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 30, -1, -1));
+        jLabel4.setText("Nombre");
+        jLayeredPane1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 70, 30));
 
-        jButton1.setText("actualizar");
+        jLabel7.setText("Estado");
+        jLayeredPane1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, 50, 20));
+
+        jButton1.setText("Actualizar");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
             }
         });
-        jLayeredPane1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 330, -1, -1));
+        jLayeredPane1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 320, -1, -1));
 
-        jButton2.setText("volver");
+        jButton2.setText("Volver");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
             }
         });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jLayeredPane1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 330, -1, -1));
-        jLayeredPane1.add(ACestado, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, 200, 30));
+        jLayeredPane1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 320, -1, -1));
 
-        ACnombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ACnombreActionPerformed(evt);
-            }
-        });
-        jLayeredPane1.add(ACnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 200, 30));
-
-        jLabel3.setText("estado");
-        jLayeredPane1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 220, 80, -1));
-
-        jLabel2.setText("id");
-        jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 80, -1));
-
-        jLabel4.setText("nombre ");
-        jLayeredPane1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 140, 90, -1));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/FondoEstandar.png"))); // NOI18N
-        jLayeredPane1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 704, 409));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/FondoEstandar.png"))); // NOI18N
+        jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -4, 710, 410));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLayeredPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jLayeredPane1)
         );
 
         pack();
@@ -117,20 +106,6 @@ public class ActualizarSalas extends javax.swing.JFrame {
     private void ACidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACidActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ACidActionPerformed
-
-    private void ACnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ACnombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ACnombreActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-    AdministrarSalas cr=new AdministrarSalas();
-             cr.setVisible(true);
-             dispose(); 
-    }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
        String nombre = ACnombre.getText();
@@ -142,7 +117,7 @@ public class ActualizarSalas extends javax.swing.JFrame {
         } else {
             try {
 
-                String sqlCode = "UPDATE salas SET nombre = ?, estado = ? WHERE id_sala = ?";
+                String sqlCode = "UPDATE equipo SET nombre = ?, estado = ? WHERE id_equipo = ?";
 
                 PreparedStatement ps = conexion.prepareStatement(sqlCode);
 
@@ -153,15 +128,21 @@ public class ActualizarSalas extends javax.swing.JFrame {
                 int filasAfectadas = ps. executeUpdate();
 
                 if (filasAfectadas > 0) {
-                    JOptionPane.showMessageDialog(null, "La sala ha sido actualizada correctamente.");
+                    JOptionPane.showMessageDialog(null, "el equipo ha sido actualizado correctamente.");
                 } else {
                     JOptionPane.showMessageDialog(null, "Hubo un error al actualizar los datos.");
                 }
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Error al actualizar los datos: " + e.getMessage());
             }
-        }
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+             AdministrarEquipos cr=new AdministrarEquipos();
+             cr.setVisible(true);
+             dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -180,20 +161,20 @@ public class ActualizarSalas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ActualizarSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ActualizarEquipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ActualizarSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ActualizarEquipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ActualizarSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ActualizarEquipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ActualizarSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ActualizarEquipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ActualizarSalas().setVisible(true);
+                new ActualizarEquipos().setVisible(true);
             }
         });
     }
@@ -208,7 +189,8 @@ public class ActualizarSalas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLayeredPane jLayeredPane1;
     // End of variables declaration//GEN-END:variables
 }

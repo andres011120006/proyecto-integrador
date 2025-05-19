@@ -6,14 +6,14 @@ package com.mycompany.proy_integ_4la;
 
 /**
  *
- * @author USER
+ * @author andre
  */
-public class PanelAdministrador extends javax.swing.JFrame {
+public class AdministrarEquipos extends javax.swing.JFrame {
 
     /**
-     * Creates new form PanelAdministrador
+     * Creates new form AdministrarEquipos
      */
-    public PanelAdministrador() {
+    public AdministrarEquipos() {
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -28,45 +28,30 @@ public class PanelAdministrador extends javax.swing.JFrame {
     private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setText(" Bienvenido ADMIN");
-        jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, -1, -1));
+        jLabel2.setText("ADMINISTAR EQUIPOS");
+        jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 170, 60));
 
-        jLabel2.setText("administar salas");
-        jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, -1, -1));
-
-        jLabel3.setText("administrar equipos");
-        jLayeredPane1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, -1, -1));
-
-        jButton2.setText("equipos");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButton5.setText("Actualizar");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                jButton5MouseClicked(evt);
             }
         });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jLayeredPane1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, 70));
+        jLayeredPane1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, -1, -1));
 
-        jLabel5.setText("administrar usuarios");
-        jLayeredPane1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, -1, -1));
-
-        jButton4.setText("usuarios");
+        jButton4.setText("Crear");
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton4MouseClicked(evt);
@@ -77,18 +62,39 @@ public class PanelAdministrador extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, 80));
+        jLayeredPane1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 80, -1));
 
-        jButton1.setText("salas");
+        jButton3.setText("Eliminar");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+        jLayeredPane1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 140, 90, -1));
+
+        jButton1.setText("volver");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
             }
         });
-        jLayeredPane1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 113, -1, 80));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jLayeredPane1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, -1, -1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/FondoAdmin.png"))); // NOI18N
-        jLayeredPane1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 410));
+        jButton2.setText("Ver Equipos");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        jLayeredPane1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 220, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/FondoEstandar.png"))); // NOI18N
+        jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -4, 710, 410));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -104,31 +110,42 @@ public class PanelAdministrador extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
-        AdministrarUsuarios cr=new AdministrarUsuarios();
-        cr.setVisible(true);
-        dispose();  
-    
-    }//GEN-LAST:event_jButton4MouseClicked
-
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-              AdministrarSalas cr=new AdministrarSalas();
+             PanelAdministrador cr=new PanelAdministrador();
              cr.setVisible(true);
-             dispose();  
+             dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-             AdministrarEquipos cr=new AdministrarEquipos();
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+           CrearEquipos cr=new CrearEquipos();
              cr.setVisible(true);
-             dispose(); 
+             dispose();         // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+           ActualizarEquipos cr=new ActualizarEquipos();
+             cr.setVisible(true);
+             dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+           EliminarEquipos cr=new EliminarEquipos();
+             cr.setVisible(true);
+             dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        VerEquipos cr=new VerEquipos();
+             cr.setVisible(true);
+             dispose();
     }//GEN-LAST:event_jButton2MouseClicked
 
     /**
@@ -148,20 +165,20 @@ public class PanelAdministrador extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PanelAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministrarEquipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PanelAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministrarEquipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PanelAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministrarEquipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PanelAdministrador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministrarEquipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new PanelAdministrador().setVisible(true);
+                new AdministrarEquipos().setVisible(true);
             }
         });
     }
@@ -169,12 +186,11 @@ public class PanelAdministrador extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLayeredPane jLayeredPane1;
     // End of variables declaration//GEN-END:variables
 }

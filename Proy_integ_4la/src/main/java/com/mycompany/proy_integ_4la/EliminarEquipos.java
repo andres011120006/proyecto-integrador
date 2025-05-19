@@ -9,15 +9,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-public class ElimiarUsuarios extends javax.swing.JFrame {
+public class EliminarEquipos extends javax.swing.JFrame {
 private final ConectarAOracle gestor = new ConectarAOracle();
     private final Connection conexion = gestor.abrir();
     /**
-     * Creates new form ElimiarUsuarios
+     * Creates new form EliminarEquipos
      */
-    public ElimiarUsuarios() {
+    public EliminarEquipos() {
         initComponents();
-        setLocationRelativeTo(null);
+         setLocationRelativeTo(null);
     }
 
     /**
@@ -30,54 +30,48 @@ private final ConectarAOracle gestor = new ConectarAOracle();
     private void initComponents() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
-        Enombre = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        Eid = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        Eid = new javax.swing.JTextField();
+        Enombre = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Enombre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EnombreActionPerformed(evt);
-            }
-        });
-        jLayeredPane1.add(Enombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, 140, -1));
+        jLabel2.setText("ELIMINAR EQUIPO");
+        jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, 130, 30));
 
-        jLabel1.setText("ELIMINAR USUARIOS");
-        jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, -1, -1));
+        jLabel3.setText("ID");
+        jLayeredPane1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 40, 30));
 
-        jLabel2.setText("nombre ");
-        jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 230, 100, -1));
+        jLabel4.setText("Nombre");
+        jLayeredPane1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, -1, -1));
+        jLayeredPane1.add(Eid, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 100, -1));
+        jLayeredPane1.add(Enombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 100, -1));
 
-        jLabel3.setText("id ");
-        jLayeredPane1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 80, -1));
-        jLayeredPane1.add(Eid, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 140, -1));
-
-        jButton2.setText("volver");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
-            }
-        });
-        jLayeredPane1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 320, -1, -1));
-
-        jButton1.setText("borrar");
+        jButton1.setText("Eliminar");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
             }
         });
-        jLayeredPane1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, -1, -1));
+        jLayeredPane1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, -1, -1));
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/FondoEstandar.png"))); // NOI18N
-        jLayeredPane1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -4, 700, 410));
+        jButton2.setText("Volver");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        jLayeredPane1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 320, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/FondoEstandar.png"))); // NOI18N
+        jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -4, 710, 410));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,12 +87,8 @@ private final ConectarAOracle gestor = new ConectarAOracle();
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void EnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EnombreActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EnombreActionPerformed
-
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-                        String nombre = Enombre.getText();
+              String nombre = Enombre.getText();
               String id = Eid.getText();
                      
         if (nombre.isEmpty() || id.isEmpty()  ) {
@@ -106,7 +96,7 @@ private final ConectarAOracle gestor = new ConectarAOracle();
         } else {
             try {
                
-                String sqlCode = "delete from usuarios where id_usuario=?";
+                String sqlCode = "delete from equipo where id_equipo=?";
 
 
                 PreparedStatement ps = conexion.prepareStatement(sqlCode);
@@ -118,20 +108,20 @@ private final ConectarAOracle gestor = new ConectarAOracle();
                 int filasAfectadas = ps. executeUpdate();
 
                 if (filasAfectadas > 0) {
-                    JOptionPane.showMessageDialog(null, "el usuario ha sido borrada correctamente.");
+                    JOptionPane.showMessageDialog(null, "el equipo ha sido borrado correctamente.");
                 } else {
                     JOptionPane.showMessageDialog(null, "Hubo un error al borrar los datos.");
                 }
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Error al borrar los datos: " + e.getMessage());
             }
-        }
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-           AdministrarUsuarios cr=new AdministrarUsuarios();
+           AdministrarEquipos cr=new AdministrarEquipos();
              cr.setVisible(true);
-             dispose();      
+             dispose();         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2MouseClicked
 
     /**
@@ -151,20 +141,20 @@ private final ConectarAOracle gestor = new ConectarAOracle();
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ElimiarUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EliminarEquipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ElimiarUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EliminarEquipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ElimiarUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EliminarEquipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ElimiarUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EliminarEquipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ElimiarUsuarios().setVisible(true);
+                new EliminarEquipos().setVisible(true);
             }
         });
     }

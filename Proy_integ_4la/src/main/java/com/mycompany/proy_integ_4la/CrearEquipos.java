@@ -9,15 +9,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-public class CrearSalas extends javax.swing.JFrame {
+public class CrearEquipos extends javax.swing.JFrame {
    private final ConectarAOracle gestor = new ConectarAOracle();
     private final Connection conexion = gestor.abrir();
     /**
-     * Creates new form CrearSalas
+     * Creates new form CrearEquipos
      */
-    public CrearSalas() {
+    public CrearEquipos() {
         initComponents();
-        setLocationRelativeTo(null);
+         setLocationRelativeTo(null);
     }
 
     /**
@@ -31,72 +31,59 @@ public class CrearSalas extends javax.swing.JFrame {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        Cnombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        Cnombre = new javax.swing.JTextField();
         Cestado = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setText("nombre");
-        jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 86, 100, 30));
+        jLabel2.setText("CREAR EQUIPO");
+        jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 110, 40));
 
-        jLabel1.setText("CREAR SALAS");
-        jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, -1, -1));
+        jLabel3.setText("Nombre");
+        jLayeredPane1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 80, 40));
+
+        jLabel4.setText("Estado");
+        jLayeredPane1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 80, 30));
 
         Cnombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CnombreActionPerformed(evt);
             }
         });
-        jLayeredPane1.add(Cnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 130, 150, -1));
+        jLayeredPane1.add(Cnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 90, -1));
+        jLayeredPane1.add(Cestado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, 110, -1));
 
-        jLabel3.setText("estado");
-        jLayeredPane1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 176, 90, 30));
-        jLayeredPane1.add(Cestado, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, 160, -1));
-
-        jButton2.setText("volver");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
-            }
-        });
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jLayeredPane1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, -1, -1));
-
-        jButton1.setText("crear");
+        jButton1.setText("Volver");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        jLayeredPane1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 310, -1, -1));
+
+        jButton2.setText("Crear");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
             }
         });
-        jLayeredPane1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, -1, -1));
+        jLayeredPane1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 310, -1, -1));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/FondoEstandar.png"))); // NOI18N
-        jLayeredPane1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 420));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/FondoEstandar.png"))); // NOI18N
+        jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 410));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLayeredPane1)
-                .addContainerGap())
+            .addComponent(jLayeredPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,11 +97,7 @@ public class CrearSalas extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_CnombreActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
                      String nombre = Cnombre.getText();
                      String estado = Cestado.getText();
         if (nombre.isEmpty() || estado.isEmpty()  ) {
@@ -122,7 +105,7 @@ public class CrearSalas extends javax.swing.JFrame {
         } else {
             try {
                
-                String sqlCode = "INSERT INTO salas (id_sala, nombre,estado) VALUES (seq_salas.NEXTVAL, ?, ?)";
+                String sqlCode = "INSERT INTO equipo (id_equipo, nombre,estado) VALUES (seq_equipos.NEXTVAL, ?, ?)";
 
 
                 PreparedStatement ps = conexion.prepareStatement(sqlCode);
@@ -134,26 +117,21 @@ public class CrearSalas extends javax.swing.JFrame {
                 int filasAfectadas = ps. executeUpdate();
 
                 if (filasAfectadas > 0) {
-                    JOptionPane.showMessageDialog(null, "La sala ha sido registrada correctamente.");
+                    JOptionPane.showMessageDialog(null, "el equipo ha sido registrado correctamente.");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Hubo un error al guardar los datos.");
+                    JOptionPane.showMessageDialog(null, "Hubo un error al registrar los datos.");
                 }
             } catch (SQLException e) {
-                JOptionPane.showMessageDialog(null, "Error al guardar los datos: " + e.getMessage());
+                JOptionPane.showMessageDialog(null, "Error al registrar los datos: " + e.getMessage());
             }
-        }
-    
-    }//GEN-LAST:event_jButton1MouseClicked
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-             AdministrarSalas cr=new AdministrarSalas();
-             cr.setVisible(true);
-             dispose(); 
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+             AdministrarEquipos cr=new AdministrarEquipos();
+             cr.setVisible(true);
+             dispose();         // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -172,20 +150,20 @@ public class CrearSalas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CrearSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrearEquipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CrearSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrearEquipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CrearSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrearEquipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CrearSalas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CrearEquipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CrearSalas().setVisible(true);
+                new CrearEquipos().setVisible(true);
             }
         });
     }
@@ -198,7 +176,7 @@ public class CrearSalas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLayeredPane jLayeredPane1;
     // End of variables declaration//GEN-END:variables
 }
