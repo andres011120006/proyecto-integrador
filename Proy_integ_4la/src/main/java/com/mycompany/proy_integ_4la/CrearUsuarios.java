@@ -6,6 +6,7 @@ package com.mycompany.proy_integ_4la;
 
 import ORCLCONEXION.ConectarAOracle;
 import Utiles.AplicarPhoto;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -129,15 +130,15 @@ public class CrearUsuarios extends javax.swing.JFrame {
         } else {
             try {
 
-                String sqlCode = "INSERT INTO usuarios (id_usuario, nombre, correo, contraseña) VALUES (seq_usuarios.NEXTVAL, ?, ?, ?)";
+                String sqlCode =  "{call inc_usuario(?, ?, ?)}";
 
-                PreparedStatement ps = conexion.prepareStatement(sqlCode);
+                CallableStatement cs = conexion.prepareCall(sqlCode);
 
-                ps.setString(1, nombre);
-                ps.setString(2, correo);
-                ps.setString(3, contraseña);
+                cs.setString(1, nombre);
+                cs.setString(2, correo);
+                cs.setString(3, contraseña);
 
-                int filasAfectadas = ps. executeUpdate();
+                int filasAfectadas = cs. executeUpdate();
 
                 if (filasAfectadas > 0) {
                     JOptionPane.showMessageDialog(null, "La cuenta ha sido registrada correctamente.");

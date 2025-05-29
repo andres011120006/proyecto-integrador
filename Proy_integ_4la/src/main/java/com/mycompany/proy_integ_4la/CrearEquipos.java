@@ -5,6 +5,7 @@
 package com.mycompany.proy_integ_4la;
 
 import ORCLCONEXION.ConectarAOracle;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -105,16 +106,16 @@ public class CrearEquipos extends javax.swing.JFrame {
         } else {
             try {
                
-                String sqlCode = "INSERT INTO equipo (id_equipo, nombre,estado) VALUES (seq_equipos.NEXTVAL, ?, ?)";
+                String sqlCode = "{call inc_equipo( ?, ?)}";
 
 
-                PreparedStatement ps = conexion.prepareStatement(sqlCode);
+                CallableStatement cs = conexion.prepareCall(sqlCode);
 
             
-                ps.setString(1, nombre);
-                ps.setString(2, estado);
+                cs.setString(1, nombre);
+                cs.setString(2, estado);
 
-                int filasAfectadas = ps. executeUpdate();
+                int filasAfectadas = cs. executeUpdate();
 
                 if (filasAfectadas > 0) {
                     JOptionPane.showMessageDialog(null, "el equipo ha sido registrado correctamente.");

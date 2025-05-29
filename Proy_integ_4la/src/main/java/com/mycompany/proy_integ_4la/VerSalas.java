@@ -85,6 +85,11 @@ public void cargarTabla() {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablasala.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablasalaMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablasala);
 
         jLayeredPane1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 60, 510, 340));
@@ -132,6 +137,11 @@ public void cargarTabla() {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
       cargarTabla();
     }//GEN-LAST:event_formWindowOpened
+
+    private void tablasalaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablasalaMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_tablasalaMouseClicked
 
     /**
      * @param args the command line arguments

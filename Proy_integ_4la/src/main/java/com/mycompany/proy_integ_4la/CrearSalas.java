@@ -5,6 +5,7 @@
 package com.mycompany.proy_integ_4la;
 
 import ORCLCONEXION.ConectarAOracle;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -122,16 +123,16 @@ public class CrearSalas extends javax.swing.JFrame {
         } else {
             try {
                
-                String sqlCode = "INSERT INTO salas (id_sala, nombre,estado) VALUES (seq_salas.NEXTVAL, ?, ?)";
+                String sqlCode = "{call inc_sala( ?, ?)}";
 
 
-                PreparedStatement ps = conexion.prepareStatement(sqlCode);
+                CallableStatement cs = conexion.prepareCall(sqlCode);
 
             
-                ps.setString(1, nombre);
-                ps.setString(2, estado);
+                cs.setString(1, nombre);
+                cs.setString(2, estado);
 
-                int filasAfectadas = ps. executeUpdate();
+                int filasAfectadas = cs. executeUpdate();
 
                 if (filasAfectadas > 0) {
                     JOptionPane.showMessageDialog(null, "La sala ha sido registrada correctamente.");
