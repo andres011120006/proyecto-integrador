@@ -4,14 +4,25 @@
  */
 package com.mycompany.proy_integ_4la;
 
+import ORCLCONEXION.ConectarAOracle;
+import java.util.Date;                  // para java.util.Date que devuelve JDateChooser
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
+import utiles.EquiposSeleccionados;
 import utiles.SalasSeleccionada;
+import utiles.SesionUsuario;
 
 /**
  *
  * @author andre
  */
 public class SalasReservadas extends javax.swing.JFrame {
-
+private final ConectarAOracle gestor = new ConectarAOracle();
+    private final Connection conexion = gestor.abrir();
     /**
      * Creates new form SalasReservadas
      */
@@ -19,6 +30,7 @@ public class SalasReservadas extends javax.swing.JFrame {
         initComponents();
         nombresala.setText(SalasSeleccionada.nombre );
         estadosala.setText( SalasSeleccionada.estado );
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -30,57 +42,130 @@ public class SalasReservadas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        nombresala = new javax.swing.JTextField();
-        estadosala = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        estadosala = new javax.swing.JTextField();
+        jLayeredPane2 = new javax.swing.JLayeredPane();
         jLabel3 = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setText("Nombre");
+        jLabel1 = new javax.swing.JLabel();
+        nombresala = new javax.swing.JTextField();
+        fechainicio = new com.toedter.calendar.JDateChooser();
+        fechafin = new com.toedter.calendar.JDateChooser();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         jLabel2.setText("Estado");
 
-        jLabel3.setText("Sala Seleccionada");
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLayeredPane2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setText("Sala Reservada");
+        jLayeredPane2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, -1, -1));
+
+        jLabel1.setText("Nombre");
+        jLayeredPane2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 50, -1, -1));
+        jLayeredPane2.add(nombresala, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 80, 150, -1));
+        jLayeredPane2.add(fechainicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 150, -1));
+        jLayeredPane2.add(fechafin, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 150, -1));
+
+        jButton2.setText("reservar");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        jLayeredPane2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 330, -1, -1));
+
+        jButton1.setText("volver");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jLayeredPane2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 330, -1, -1));
+
+        jLabel4.setText("Fecha fin");
+        jLayeredPane2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 70, -1));
+
+        jLabel6.setText("Fecha inicio");
+        jLayeredPane2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 100, -1));
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/FondoEstandar.png"))); // NOI18N
+        jLayeredPane2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -4, 710, 420));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(estadosala, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                                .addComponent(nombresala))
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(124, Short.MAX_VALUE))
+            .addComponent(jLayeredPane2)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addGap(34, 34, 34)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nombresala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addGap(9, 9, 9)
-                .addComponent(estadosala, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(141, Short.MAX_VALUE))
+            .addComponent(jLayeredPane2)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+try {
+    // Obtener fechas como java.util.Date
+    Date fechaInicioUtil = fechainicio.getDate();
+    Date fechaFinUtil = fechafin.getDate();
+
+    // Validar fechas
+    if (fechaInicioUtil == null || fechaFinUtil == null) {
+        JOptionPane.showMessageDialog(this, "Por favor selecciona ambas fechas.");
+        return;
+    }
+
+    if (!fechaInicioUtil.before(fechaFinUtil)) {
+        JOptionPane.showMessageDialog(this, "La fecha de inicio debe ser menor que la fecha fin.");
+        return;
+    }
+
+    // Convertir a java.sql.Date
+    java.sql.Date fechaInicioSQL = new java.sql.Date(fechaInicioUtil.getTime());
+    java.sql.Date fechaFinSQL = new java.sql.Date(fechaFinUtil.getTime());
+
+    // Preparar e insertar en Oracle
+    String sql = "INSERT INTO prestamos (id_préstamo, id_usuario, fecha_inicio, fecha_fin, estado, id_sala) " +
+                 "VALUES (seq_prestamos.NEXTVAL, ?, ?, ? , 'en espera', ?)";
+
+    try {
+        PreparedStatement ps = conexion.prepareStatement(sql);
+        ps.setInt(1, SesionUsuario.idUsuario);  // ID_USUARIO desde sesión
+        ps.setDate(2, fechaInicioSQL);          // FECHA_INICIO
+        ps.setDate(3, fechaFinSQL);             // FECHA_FIN               
+        ps.setObject(4, SalasSeleccionada.id);                // ID_SALA (puede ser null)
+
+        int filas = ps.executeUpdate();
+
+        if (filas > 0) {
+            JOptionPane.showMessageDialog(this, "Préstamo guardado correctamente.");
+        }
+
+        ps.close();
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(this, "Error al guardar en la base de datos:\n" + e.getMessage());
+        e.printStackTrace();
+    }
+
+} catch (Exception ex) {
+    JOptionPane.showMessageDialog(this, "Error general:\n" + ex.getMessage());
+    ex.printStackTrace();
+}
+
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+          ReservarSalas cr=new ReservarSalas();
+             cr.setVisible(true);
+             dispose();         // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -119,9 +204,17 @@ public class SalasReservadas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField estadosala;
+    private com.toedter.calendar.JDateChooser fechafin;
+    private com.toedter.calendar.JDateChooser fechainicio;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JTextField nombresala;
     // End of variables declaration//GEN-END:variables
 }

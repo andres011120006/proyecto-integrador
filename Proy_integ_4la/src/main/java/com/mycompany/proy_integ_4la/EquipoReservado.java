@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import utiles.EquiposSeleccionados;
+import utiles.SalasSeleccionada;
+import utiles.SesionUsuario;
 
 public class EquipoReservado extends javax.swing.JFrame {
 private final ConectarAOracle gestor = new ConectarAOracle();
@@ -24,6 +26,7 @@ private final ConectarAOracle gestor = new ConectarAOracle();
         initComponents();
          nombreequipo.setText(EquiposSeleccionados.nombre );
         estadoequipo.setText( EquiposSeleccionados.estado );
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -35,21 +38,40 @@ private final ConectarAOracle gestor = new ConectarAOracle();
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        nombreequipo = new javax.swing.JTextField();
         estadoequipo = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        nombreequipo = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
         fechainicio = new com.toedter.calendar.JDateChooser();
+        jLabel5 = new javax.swing.JLabel();
         fechafin = new com.toedter.calendar.JDateChooser();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+
+        jLabel3.setText("Estado");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Equipo Rservado");
+        jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setText("Equipo Reservado");
+        jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, -1, -1));
+
+        jLabel2.setText("Nombre");
+        jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, -1));
+        jLayeredPane1.add(nombreequipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 130, -1));
+
+        jLabel4.setText("Fecha Inicio");
+        jLayeredPane1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, -1, -1));
+        jLayeredPane1.add(fechainicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 180, 130, -1));
+
+        jLabel5.setText("Fecha Fin");
+        jLayeredPane1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, -1, -1));
+        jLayeredPane1.add(fechafin, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 250, 130, -1));
 
         jButton1.setText("Rerservar");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -57,81 +79,28 @@ private final ConectarAOracle gestor = new ConectarAOracle();
                 jButton1MouseClicked(evt);
             }
         });
+        jLayeredPane1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, -1, -1));
 
         jButton2.setText("volver");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        jLayeredPane1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 320, -1, -1));
 
-        jLabel2.setText("Nombre");
-
-        jLabel3.setText("Estado");
-
-        jLabel4.setText("Fecha Inicio");
-
-        jLabel5.setText("Fecha Fin");
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/FondoEstandar.png"))); // NOI18N
+        jLayeredPane1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 710, 410));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(152, 152, 152)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
-                .addContainerGap(136, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(fechafin, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fechainicio, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(estadoequipo, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(nombreequipo, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(31, 31, 31))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75))
+            .addComponent(jLayeredPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(7, 7, 7)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(nombreequipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(estadoequipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
-                .addGap(4, 4, 4)
-                .addComponent(fechainicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
-                .addGap(3, 3, 3)
-                .addComponent(fechafin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(33, Short.MAX_VALUE))
+            .addComponent(jLayeredPane1)
         );
 
         pack();
@@ -139,43 +108,59 @@ private final ConectarAOracle gestor = new ConectarAOracle();
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
  try {
-        //  Obtener fechas como java.util.Date
-        Date fechaInicioUtil = fechainicio.getDate();
-        Date fechaFinUtil = fechafin.getDate();
+    // Obtener fechas como java.util.Date
+    Date fechaInicioUtil = fechainicio.getDate();
+    Date fechaFinUtil = fechafin.getDate();
 
-        // . Validar fechas
-        if (fechaInicioUtil == null || fechaFinUtil == null) {
-            JOptionPane.showMessageDialog(this, "Por favor selecciona ambas fechas.");
-            return;
-        }
+    // Validar fechas
+    if (fechaInicioUtil == null || fechaFinUtil == null) {
+        JOptionPane.showMessageDialog(this, "Por favor selecciona ambas fechas.");
+        return;
+    }
 
-        if (!fechaInicioUtil.before(fechaFinUtil)) {
-            JOptionPane.showMessageDialog(this, "La fecha de inicio debe ser menor que la fecha fin.");
-            return;
-        }
+    if (!fechaInicioUtil.before(fechaFinUtil)) {
+        JOptionPane.showMessageDialog(this, "La fecha de inicio debe ser menor que la fecha fin.");
+        return;
+    }
 
-        //  Convertir a java.sql.Date
-        java.sql.Date fechaInicioSQL = new java.sql.Date(fechaInicioUtil.getTime());
-        java.sql.Date fechaFinSQL = new java.sql.Date(fechaFinUtil.getTime());
+    // Convertir a java.sql.Date
+    java.sql.Date fechaInicioSQL = new java.sql.Date(fechaInicioUtil.getTime());
+    java.sql.Date fechaFinSQL = new java.sql.Date(fechaFinUtil.getTime());
 
-        //  Preparar e insertar en Oracle
-        String sql = "INSERT INTO prestamo (fecha_inicio, fecha_fin) VALUES (?, ?)";
+    // Preparar e insertar en Oracle
+    String sql = "INSERT INTO prestamos (id_préstamo, id_usuario, fecha_inicio, fecha_fin, estado, id_equipo) " +
+                 "VALUES (seq_prestamos.NEXTVAL, ?, ?, ? , 'en espera', ?)";
+
+    try {
         PreparedStatement ps = conexion.prepareStatement(sql);
-        ps.setDate(1, fechaInicioSQL);
-        ps.setDate(2, fechaFinSQL);
+        ps.setInt(1, SesionUsuario.idUsuario);  // ID_USUARIO desde sesión
+        ps.setDate(2, fechaInicioSQL);          // FECHA_INICIO
+        ps.setDate(3, fechaFinSQL);             // FECHA_FIN               
+        ps.setObject(4, EquiposSeleccionados.id);                // ID_SALA (puede ser null)
 
         int filas = ps.executeUpdate();
+
         if (filas > 0) {
-            JOptionPane.showMessageDialog(this, "Fechas guardadas correctamente.");
+            JOptionPane.showMessageDialog(this, "Préstamo guardado correctamente.");
         }
 
         ps.close();
-
     } catch (SQLException e) {
         JOptionPane.showMessageDialog(this, "Error al guardar en la base de datos:\n" + e.getMessage());
         e.printStackTrace();
     }
+
+} catch (Exception ex) {
+    JOptionPane.showMessageDialog(this, "Error general:\n" + ex.getMessage());
+    ex.printStackTrace();
+}
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+            ReservarEquipos cr=new ReservarEquipos();
+             cr.setVisible(true);
+             dispose();             // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -223,6 +208,8 @@ private final ConectarAOracle gestor = new ConectarAOracle();
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JTextField nombreequipo;
     // End of variables declaration//GEN-END:variables
 }

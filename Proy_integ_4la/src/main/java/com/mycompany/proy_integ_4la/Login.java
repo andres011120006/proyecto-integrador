@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
+import utiles.SesionUsuario;
 
 public class Login extends javax.swing.JFrame {
 
@@ -17,61 +18,81 @@ public class Login extends javax.swing.JFrame {
         setTitle("Ingreso al sistema");
         
     }   
- private void validarCredenciales() {
-        String correo = PonerCorreo.getText();
-        String contraseña = new String(PonerContraseña.getPassword());
-        if (correo.trim().isEmpty() || contraseña.trim().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor complete todos los campos.");
-            return;
-        }
-        if (correo.equals("admin@example.com") && contraseña.equals("123")) {
-            JOptionPane.showMessageDialog(this, "Bienvenido administrador.");
-            new PanelAdministrador().setVisible(true);
-            this.dispose();
-            return;
-        }
-        try {
-            String consulta = "SELECT * FROM usuarios WHERE correo='" + correo + "' AND contraseña='" + contraseña + "'";
-            PreparedStatement stmt = conexion.prepareStatement(consulta);
-            ResultSet resultado = stmt.executeQuery();
+private void validarCredenciales() {
+    String correo = PonerCorreo.getText();
+    String contraseña = new String(PonerContraseña.getPassword());
 
-            if (resultado.next()) {
-                JOptionPane.showMessageDialog(this, "Bienvenido usuario.");
-                new PanelUsuario().setVisible(true);
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(this, "Credenciales incorrectas. Intente nuevamente.");
-            }
-
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error al verificar las credenciales: " + ex.getMessage());
-        }
+    if (correo.trim().isEmpty() || contraseña.trim().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor complete todos los campos.");
+        return;
     }
+
+    if (correo.equals("admin@example.com") && contraseña.equals("123")) {
+        JOptionPane.showMessageDialog(this, "Bienvenido administrador.");
+        new PanelAdministrador().setVisible(true);
+        this.dispose();
+        return;
+    }
+
+    try {
+        String sql = "SELECT ID_Usuario FROM usuarios WHERE correo = ? AND contraseña = ?";
+        PreparedStatement ps = conexion.prepareStatement(sql);
+        ps.setString(1, correo);
+        ps.setString(2, contraseña);
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            // Guardar el ID del usuario en la sesión
+            SesionUsuario.idUsuario = rs.getInt("ID_Usuario");
+
+            JOptionPane.showMessageDialog(this, "Bienvenido usuario.  " );
+            new PanelUsuario().setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Credenciales incorrectas. Intente nuevamente.");
+        }
+
+        rs.close();
+        ps.close();
+
+    } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "Error al verificar las credenciales: " + ex.getMessage());
+        ex.printStackTrace();
+    }
+}
+
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        Fondo = new javax.swing.JPanel();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
         TextoBienvenida = new javax.swing.JLabel();
         TextoCorreo = new javax.swing.JLabel();
-        TextoContraseña = new javax.swing.JLabel();
         PonerCorreo = new javax.swing.JTextField();
-        BotonEntrar = new javax.swing.JButton();
+        TextoContraseña = new javax.swing.JLabel();
         PonerContraseña = new javax.swing.JPasswordField();
+        BotonEntrar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Fondo.setBackground(new java.awt.Color(51, 51, 255));
+        jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         TextoBienvenida.setFont(new java.awt.Font("Segoe UI Black", 1, 18)); // NOI18N
         TextoBienvenida.setText("SEAN BIENVENIDOS");
+        jLayeredPane1.add(TextoBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 20, -1, -1));
 
         TextoCorreo.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         TextoCorreo.setText("CORREO:");
+        jLayeredPane1.add(TextoCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, -1, -1));
+        jLayeredPane1.add(PonerCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 250, 40));
 
         TextoContraseña.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         TextoContraseña.setText("CONTRASEÑA:");
+        jLayeredPane1.add(TextoContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, -1, -1));
+        jLayeredPane1.add(PonerContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 250, 40));
 
         BotonEntrar.setText("ENTRAR");
         BotonEntrar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -84,55 +105,22 @@ public class Login extends javax.swing.JFrame {
                 BotonEntrarActionPerformed(evt);
             }
         });
+        jLayeredPane1.add(BotonEntrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 293, 120, 40));
 
-        javax.swing.GroupLayout FondoLayout = new javax.swing.GroupLayout(Fondo);
-        Fondo.setLayout(FondoLayout);
-        FondoLayout.setHorizontalGroup(
-            FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FondoLayout.createSequentialGroup()
-                .addContainerGap(93, Short.MAX_VALUE)
-                .addComponent(TextoBienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88))
-            .addGroup(FondoLayout.createSequentialGroup()
-                .addGap(49, 49, 49)
-                .addGroup(FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PonerContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TextoCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotonEntrar)
-                    .addComponent(TextoContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PonerCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        FondoLayout.setVerticalGroup(
-            FondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(FondoLayout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(TextoBienvenida)
-                .addGap(28, 28, 28)
-                .addComponent(TextoCorreo)
-                .addGap(16, 16, 16)
-                .addComponent(PonerCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(TextoContraseña)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(PonerContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BotonEntrar)
-                .addContainerGap(29, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/login_final.png"))); // NOI18N
+        jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -4, 710, 410));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Fondo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLayeredPane1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Fondo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jLayeredPane1)
         );
 
         pack();
@@ -158,11 +146,12 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonEntrar;
-    private javax.swing.JPanel Fondo;
     private javax.swing.JPasswordField PonerContraseña;
     private javax.swing.JTextField PonerCorreo;
     private javax.swing.JLabel TextoBienvenida;
     private javax.swing.JLabel TextoContraseña;
     private javax.swing.JLabel TextoCorreo;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLayeredPane jLayeredPane1;
     // End of variables declaration//GEN-END:variables
 }

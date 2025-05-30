@@ -50,7 +50,7 @@ public class CrearEquipos extends javax.swing.JFrame {
         jLabel3.setText("Nombre");
         jLayeredPane1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 80, 40));
 
-        jLabel4.setText("Estado");
+        jLabel4.setText("descripcion");
         jLayeredPane1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, 80, 30));
 
         Cnombre.addActionListener(new java.awt.event.ActionListener() {
