@@ -5,43 +5,55 @@
 package com.mycompany.proy_integ_4la;
 
 import ORCLCONEXION.ConectarAOracle;
-import utiles.EquiposSeleccionados;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class ReservarEquipos extends javax.swing.JFrame {
+
+/**
+ *
+ * @author andre
+ */
+public class AdministrarPrestamos extends javax.swing.JFrame {
  private final ConectarAOracle gestor = new ConectarAOracle();
     private final Connection conexion = gestor.abrir();
     /**
-     * Creates new form ReservarEquipos
+     * Creates new form AdministrarPrestamos
      */
-    public ReservarEquipos() {
+    public AdministrarPrestamos() {
         initComponents();
         setLocationRelativeTo(null);
     }
 public void cargarTabla() {
     try {
         DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("ID");
-        modelo.addColumn("Nombre");
+        modelo.addColumn("ID_prestamo");
+        modelo.addColumn("ID_usuario");
+        modelo.addColumn("fecha_inicio");
+        modelo.addColumn("fecha_fin");
         modelo.addColumn("Estado");
+        modelo.addColumn("ID_equipo");
+        modelo.addColumn("ID_sala");
 
-        String sql = "SELECT * FROM equipo";
+        String sql = "SELECT * FROM prestamos";
         PreparedStatement ps = conexion.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
 
         while (rs.next()) {
-            Object[] fila = new Object[3];
-            fila[0] = rs.getInt("id_equipo");
-            fila[1] = rs.getString("nombre");
-            fila[2] = rs.getString("Estado");
+            Object[] fila = new Object[7];
+            fila[0] = rs.getInt("id_préstamo");
+            fila[1] = rs.getString("id_usuario");
+            fila[2] = rs.getString("fecha_inicio");
+            fila[3] = rs.getString("fecha_fin");
+            fila[4] = rs.getString("estado");
+            fila[5] = rs.getString("id_equipo");
+            fila[6] = rs.getString("id_sala");
             modelo.addRow(fila);
         }
 
-        tablaequipo.setModel(modelo);
+        tablaprestamo.setModel(modelo);
     } catch (Exception e) {
         e.printStackTrace();
     }
@@ -57,10 +69,11 @@ public void cargarTabla() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaequipo = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        tablaprestamo = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -72,7 +85,7 @@ public void cargarTabla() {
 
         jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tablaequipo.setModel(new javax.swing.table.DefaultTableModel(
+        tablaprestamo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -83,31 +96,39 @@ public void cargarTabla() {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tablaequipo);
+        jScrollPane1.setViewportView(tablaprestamo);
 
-        jLayeredPane1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 420, 340));
+        jLayeredPane1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, 580, 360));
 
-        jButton2.setText("Seleccionar");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
-            }
-        });
-        jLayeredPane1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, -1, -1));
+        jLabel2.setText("Administrar Prestamos");
+        jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, -1, -1));
 
-        jButton1.setText("volver");
+        jButton1.setText("Rechazar");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton1MouseClicked(evt);
             }
         });
-        jLayeredPane1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, -1, -1));
+        jLayeredPane1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
 
-        jLabel2.setText("Seleccione un equipo");
-        jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 140, 40));
+        jButton2.setText("Aceptar");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        jLayeredPane1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 80, -1));
+
+        jButton3.setText("volver");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+        jLayeredPane1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/FondoEstandar.png"))); // NOI18N
-        jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -4, 710, 410));
+        jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -4, 710, 420));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,47 +138,76 @@ public void cargarTabla() {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-cargarTabla();        // TODO add your handling code here:
+    cargarTabla();         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowOpened
 
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+      PanelAdministrador cr=new PanelAdministrador();
+             cr.setVisible(true);
+             dispose();
+    }//GEN-LAST:event_jButton3MouseClicked
+
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-int fila = tablaequipo.getSelectedRow();
+    int fila = tablaprestamo.getSelectedRow();
 
     if (fila != -1) {
-        // Convertir correctamente
-        int id = Integer.parseInt(tablaequipo.getValueAt(fila, 0).toString());
-        String nombre = tablaequipo.getValueAt(fila, 1).toString();
-        String estado = tablaequipo.getValueAt(fila, 2).toString();
+        try {
+            int id = Integer.parseInt(tablaprestamo.getValueAt(fila, 0).toString());
 
-        JOptionPane.showMessageDialog(this, 
-            "Datos de la fila seleccionada:\n" +
-            "ID: " + id + "\n" +
-            "Nombre: " + nombre + "\n" +
-            "Estado: " + estado);
-        //carga datos a las varibales
-        EquiposSeleccionados.id = id;
-        EquiposSeleccionados.nombre = nombre;
-        EquiposSeleccionados.estado = estado;
+            String sql = "UPDATE prestamos SET estado = ? WHERE id_préstamo = ?";
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setString(1, "aceptado");
+            ps.setInt(2, id);
 
+            int filasActualizadas = ps.executeUpdate();
+            if (filasActualizadas > 0) {
+                JOptionPane.showMessageDialog(this, "Préstamo aceptado exitosamente.");
+                cargarTabla(); // Refresca la tabla
+            } else {
+                JOptionPane.showMessageDialog(this, "No se encontró el préstamo.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error al aceptar el préstamo.");
+        }
     } else {
         JOptionPane.showMessageDialog(this, "Por favor, selecciona una fila.");
-    }
-    EquipoReservado cr=new EquipoReservado();
-             cr.setVisible(true);
-             dispose();           // TODO        // TODO add your handling code here:
+    }         
     }//GEN-LAST:event_jButton2MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-       PanelUsuario cr=new PanelUsuario();
-             cr.setVisible(true);
-             dispose(); 
+int fila = tablaprestamo.getSelectedRow();
+
+    if (fila != -1) {
+        try {
+            int id = Integer.parseInt(tablaprestamo.getValueAt(fila, 0).toString());
+
+            String sql = "UPDATE prestamos SET estado = ? WHERE id_préstamo = ?";
+            PreparedStatement ps = conexion.prepareStatement(sql);
+            ps.setString(1, "rechazado");
+            ps.setInt(2, id);
+
+            int filasActualizadas = ps.executeUpdate();
+            if (filasActualizadas > 0) {
+                JOptionPane.showMessageDialog(this, "Préstamo rechazado exitosamente.");
+                cargarTabla(); // Refresca la tabla
+            } else {
+                JOptionPane.showMessageDialog(this, "No se encontró el préstamo.");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error al rechazar el préstamo.");
+        }
+    } else {
+        JOptionPane.showMessageDialog(this, "Por favor, selecciona una fila.");
+    }        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseClicked
 
     /**
@@ -177,20 +227,20 @@ int fila = tablaequipo.getSelectedRow();
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ReservarEquipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministrarPrestamos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ReservarEquipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministrarPrestamos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ReservarEquipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministrarPrestamos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ReservarEquipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AdministrarPrestamos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ReservarEquipos().setVisible(true);
+                new AdministrarPrestamos().setVisible(true);
             }
         });
     }
@@ -198,10 +248,11 @@ int fila = tablaequipo.getSelectedRow();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablaequipo;
+    private javax.swing.JTable tablaprestamo;
     // End of variables declaration//GEN-END:variables
 }

@@ -70,7 +70,7 @@ public class AdministrarUsuarios extends javax.swing.JFrame {
                 jButton1MouseClicked(evt);
             }
         });
-        jLayeredPane2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, -1, -1));
+        jLayeredPane2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, 120, -1));
 
         jButton5.setText("actualizar");
         jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -96,7 +96,7 @@ public class AdministrarUsuarios extends javax.swing.JFrame {
                 jButton4ActionPerformed(evt);
             }
         });
-        jLayeredPane2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 100, -1));
+        jLayeredPane2.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 120, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/FondoEstandar.png"))); // NOI18N
         jLayeredPane2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));

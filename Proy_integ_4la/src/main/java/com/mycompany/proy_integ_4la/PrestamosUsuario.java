@@ -5,47 +5,27 @@
 package com.mycompany.proy_integ_4la;
 
 import ORCLCONEXION.ConectarAOracle;
-import utiles.EquiposSeleccionados;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import utiles.SesionUsuario;
 
-public class ReservarEquipos extends javax.swing.JFrame {
- private final ConectarAOracle gestor = new ConectarAOracle();
+/**
+ *
+ * @author andre
+ */
+public class PrestamosUsuario extends javax.swing.JFrame {
+private final ConectarAOracle gestor = new ConectarAOracle();
     private final Connection conexion = gestor.abrir();
     /**
-     * Creates new form ReservarEquipos
+     * Creates new form PrestamosUsuario
      */
-    public ReservarEquipos() {
+    public PrestamosUsuario() {
         initComponents();
         setLocationRelativeTo(null);
     }
-public void cargarTabla() {
-    try {
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("ID");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Estado");
 
-        String sql = "SELECT * FROM equipo";
-        PreparedStatement ps = conexion.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
-
-        while (rs.next()) {
-            Object[] fila = new Object[3];
-            fila[0] = rs.getInt("id_equipo");
-            fila[1] = rs.getString("nombre");
-            fila[2] = rs.getString("Estado");
-            modelo.addRow(fila);
-        }
-
-        tablaequipo.setModel(modelo);
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,10 +37,9 @@ public void cargarTabla() {
 
         jLayeredPane1 = new javax.swing.JLayeredPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tablaequipo = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        tablaprestamo = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -72,7 +51,7 @@ public void cargarTabla() {
 
         jLayeredPane1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        tablaequipo.setModel(new javax.swing.table.DefaultTableModel(
+        tablaprestamo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -83,17 +62,12 @@ public void cargarTabla() {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tablaequipo);
+        jScrollPane1.setViewportView(tablaprestamo);
 
-        jLayeredPane1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 60, 420, 340));
+        jLayeredPane1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 570, 350));
 
-        jButton2.setText("Seleccionar");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
-            }
-        });
-        jLayeredPane1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, -1, -1));
+        jLabel2.setText("Mis Prestamos");
+        jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 26, 170, 20));
 
         jButton1.setText("volver");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -101,13 +75,10 @@ public void cargarTabla() {
                 jButton1MouseClicked(evt);
             }
         });
-        jLayeredPane1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, -1, -1));
-
-        jLabel2.setText("Seleccione un equipo");
-        jLayeredPane1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 30, 140, 40));
+        jLayeredPane1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/FondoEstandar.png"))); // NOI18N
-        jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -4, 710, 410));
+        jLayeredPane1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -4, 710, 420));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,49 +88,54 @@ public void cargarTabla() {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLayeredPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 409, Short.MAX_VALUE)
+            .addComponent(jLayeredPane1)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-cargarTabla();        // TODO add your handling code here:
-    }//GEN-LAST:event_formWindowOpened
-
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
-int fila = tablaequipo.getSelectedRow();
-
-    if (fila != -1) {
-        // Convertir correctamente
-        int id = Integer.parseInt(tablaequipo.getValueAt(fila, 0).toString());
-        String nombre = tablaequipo.getValueAt(fila, 1).toString();
-        String estado = tablaequipo.getValueAt(fila, 2).toString();
-
-        JOptionPane.showMessageDialog(this, 
-            "Datos de la fila seleccionada:\n" +
-            "ID: " + id + "\n" +
-            "Nombre: " + nombre + "\n" +
-            "Estado: " + estado);
-        //carga datos a las varibales
-        EquiposSeleccionados.id = id;
-        EquiposSeleccionados.nombre = nombre;
-        EquiposSeleccionados.estado = estado;
-
-    } else {
-        JOptionPane.showMessageDialog(this, "Por favor, selecciona una fila.");
-    }
-    EquipoReservado cr=new EquipoReservado();
-             cr.setVisible(true);
-             dispose();           // TODO        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2MouseClicked
-
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-       PanelUsuario cr=new PanelUsuario();
+            PanelUsuario cr=new PanelUsuario();
              cr.setVisible(true);
-             dispose(); 
+             dispose();          // TODO add your handling code here:
     }//GEN-LAST:event_jButton1MouseClicked
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+          cargarTabla();      // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowOpened
+public void cargarTabla() {
+    try {
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("ID_prestamo");
+        modelo.addColumn("ID_usuario");
+        modelo.addColumn("fecha_inicio");
+        modelo.addColumn("fecha_fin");
+        modelo.addColumn("Estado");
+        modelo.addColumn("ID_equipo");
+        modelo.addColumn("ID_sala");
+
+        String sql = "SELECT * FROM prestamos WHERE id_usuario = ?";
+        PreparedStatement ps = conexion.prepareStatement(sql);
+      ps.setInt(1, SesionUsuario.idUsuario); 
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            Object[] fila = new Object[7];
+            fila[0] = rs.getInt("id_préstamo");
+            fila[1] = rs.getString("id_usuario");
+            fila[2] = rs.getString("fecha_inicio");
+            fila[3] = rs.getString("fecha_fin");
+            fila[4] = rs.getString("estado");
+            fila[5] = rs.getString("id_equipo");
+            fila[6] = rs.getString("id_sala");
+            modelo.addRow(fila);
+        }
+
+        tablaprestamo.setModel(modelo);
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
     /**
      * @param args the command line arguments
      */
@@ -177,31 +153,30 @@ int fila = tablaequipo.getSelectedRow();
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ReservarEquipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PrestamosUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ReservarEquipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PrestamosUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ReservarEquipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PrestamosUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ReservarEquipos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PrestamosUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ReservarEquipos().setVisible(true);
+                new PrestamosUsuario().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablaequipo;
+    private javax.swing.JTable tablaprestamo;
     // End of variables declaration//GEN-END:variables
 }

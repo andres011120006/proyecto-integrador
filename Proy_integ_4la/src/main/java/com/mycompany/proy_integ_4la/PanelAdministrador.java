@@ -35,6 +35,7 @@ public class PanelAdministrador extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
         jButton2.setText("equipos");
@@ -99,6 +100,14 @@ public class PanelAdministrador extends javax.swing.JFrame {
         });
         jLayeredPane1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 290, 80));
 
+        jLabel6.setText("                                     Administrar Prestamos");
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
+        jLayeredPane1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, 270, 90));
+
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagen/FondoAdmin.png"))); // NOI18N
         jLayeredPane1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 410));
 
@@ -161,6 +170,12 @@ public class PanelAdministrador extends javax.swing.JFrame {
              dispose(); 
     }//GEN-LAST:event_jLabel3MouseClicked
 
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+                         AdministrarPrestamos cr=new AdministrarPrestamos();
+             cr.setVisible(true);
+             dispose(); 
+    }//GEN-LAST:event_jLabel6MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -205,6 +220,7 @@ public class PanelAdministrador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLayeredPane jLayeredPane1;
     // End of variables declaration//GEN-END:variables
 }
